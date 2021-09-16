@@ -1,0 +1,30 @@
+<%- include("./partials/_header") %>  
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 offset-md-3" >
+            <div class="card"><!--Una tarjeta, un cuadro blanco-->
+                <div class="card-body">
+                    <form action="/editar/<%= tarea._id %>" method="POST"><!--POST para enviar datos al servidor-->
+                        <div class="form-group">
+                            <input type="text" name="title" placeholder="Inserta un Título" class="form-control" value="<%= tarea.title %>"> 
+                        </div>
+                        <div class="form-group mb-4">
+                            <textarea name="description" cols="80" class="form-control" placeholder="Inserte Descripción"><%= tarea.description %></textarea>
+        
+                        </div>
+                                              
+                        <button type="submit" class="btn btn-primary w-100 " >Modificar</button>                  
+                    </form>
+        
+                </div>
+        
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    
+<%- include("./partials/_footer") %>

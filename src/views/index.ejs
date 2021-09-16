@@ -1,0 +1,71 @@
+<%- include("./partials/_header") %>  
+<pre>
+    <!--<%=tasks%> para comprobar que estoy mostrando datos en la vista-->
+    
+</pre> 
+
+    <div class="container">
+        <h1>Formulario de Tareas</h1>
+        <div class="row">
+        <!--Formulario (boostrap se compone de 12 columnas)-->
+        <div class="col-md-5">
+            <div class="card"><!--Una tarjeta, un cuadro blanco-->
+                <div class="card-body">
+                    <form action="/add" method="POST"><!--POST para enviar datos al servidor-->
+                        <div class="form-group">
+                            <input type="text" name="title" placeholder="Inserta un Título" class="form-control"> 
+                        </div>
+                        <div class="form-group mb-4">
+                            <textarea name="description" cols="80" class="form-control" placeholder="Inserte Descripción"></textarea>
+
+                        </div>
+                                              
+                        <button type="submit" class="btn btn-primary w-100 " >Adicionar</button>                  
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        <!--Lista-->
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <!--Cabecera de la tabla:-->
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i< tasks.length; i++) { %> <!--Recorro la base de datos -->
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%= tasks[i].title%></td>
+                            <td><%= tasks[i].description%></td>
+                            <td>
+                                <a href="/btndone/<%= tasks[i]._id %>" 
+                                    class="btn <%= tasks[i].status ? 'btn-success': 'btn-dark'%>"> Done</a>
+                                <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Delete</a>
+                                <a href="/editar/<%= tasks[i]._id %>" class="btn btn-info">Edit</a>
+                            </td>
+                        </tr>
+
+                   <% } %>
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+        </div>    
+
+    </div>
+    
+    
+<%- include("./partials/_footer") %>
+ 
